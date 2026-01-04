@@ -6,259 +6,297 @@
     <title>$ZAZZY — The Fairest Meme Coin</title>
 
     <link rel="icon" href="favicon.png" sizes="512x512">
-
-    <!-- iOS Safari optimizations -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Orbitron:wght@900&display=swap" rel="stylesheet">
-
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        body{
-            background:#000;color:#fff;overflow-x:hidden;position:relative;
-            -webkit-font-smoothing:antialiased;
-            -webkit-tap-highlight-color:transparent;
-        }
-
-        html,body{height:100%}
-
-        /* ================= BACKGROUND ================= */
-        #bg-video{
-            position:fixed;top:0;left:0;width:100%;height:100%;
-            object-fit:cover;z-index:1;pointer-events:none;
-        }
-        .overlay{
-            position:fixed;top:0;left:0;width:100%;height:100%;
-            background:rgba(0,0,0,0.68);z-index:2
-        }
-
-        /* ================= MENU ================= */
-        .menu-wrapper{
-            position:fixed;top:20px;right:20px;z-index:1000;
-        }
-
-        .burger{
-            width:34px;height:26px;display:none;
-            flex-direction:column;justify-content:space-between;
-            cursor:pointer;
-        }
-        .burger span{
-            height:4px;background:#27F5F2;border-radius:2px;
-            box-shadow:0 0 12px #27F5F2;
-        }
+        body{background:#000;color:#fff;overflow-x:hidden;position:relative}
+        
+        #bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;pointer-events:none}
+        .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.68);z-index:2}
 
         .menu{
-            position:fixed;top:0;right:-100%;
-            width:100%;height:100svh;
-            background:rgba(0,0,0,0.92);
-            display:flex;flex-direction:column;
-            justify-content:center;align-items:center;
-            gap:35px;transition:right .4s ease;
+            position:absolute;top:25px;left:50%;transform:translateX(-50%);
+            display:flex;gap:45px;z-index:999;flex-wrap:wrap;justify-content:center;
         }
-        .menu.active{right:0}
         .menu a{
-            font-weight:500;font-size:1.4rem;
-            color:#e0e0e0;text-decoration:none;
-            text-transform:uppercase;letter-spacing:3px;
+            font-weight:500;font-size:0.9rem;color:#e0e0e0;text-decoration:none;
+            text-transform:uppercase;letter-spacing:2.5px;transition:all .5s;
         }
-        .menu a:hover{color:#27F5F2;text-shadow:0 0 20px #27F5F2}
+        .menu a:hover{color:#27F5F2;text-shadow:0 0 20px #27F5F2;transform:translateY(-3px)}
 
-        @media(min-width:769px){
-            .burger{display:none}
-            .menu{
-                position:absolute;right:auto;left:50%;
-                transform:translateX(-50%);
-                height:auto;background:none;
-                flex-direction:row;gap:45px;
-            }
-        }
-        @media(max-width:768px){
-            .burger{display:flex}
-            #bg-video{display:none}
-            body{
-                background:radial-gradient(circle at top,#0b3f3f,#000 70%);
-            }
-        }
-
-        /* ================= SECTIONS ================= */
-        .section{
-            min-height:100svh;
-            padding:160px 20px 100px;
-            text-align:center;position:relative;z-index:10;
-        }
+        .section{padding:180px 20px 100px;text-align:center;position:relative;z-index:10}
 
         .logo{
-            width:320px;height:320px;border-radius:50%;
-            border:1.5px solid #27F5F2;
-            box-shadow:0 0 30px rgba(39,245,242,.8);
-            animation:pulse 4s infinite;
+            width:320px;height:320px;border-radius:50%;border:1.5px solid #27F5F2;
+            box-shadow:0 0 30px rgba(39,245,242,0.8);animation:pulse 4s infinite;
         }
         @keyframes pulse{
-            0%,100%{box-shadow:0 0 30px rgba(39,245,242,.8)}
+            0%,100%{box-shadow:0 0 30px rgba(39,245,242,0.8)}
             50%{box-shadow:0 0 70px #27F5F2}
         }
 
-        h1{
-            font-family:'Orbitron',sans-serif;
-            font-size:8.5rem;color:#27F5F2;
-            text-shadow:0 0 60px rgba(39,245,242,.8);
-            margin:40px 0;
-        }
+        h1{font-family:'Orbitron',sans-serif;font-size:8.5rem;color:#27F5F2;
+           text-shadow:0 0 60px rgba(39,245,242,0.8);margin:40px 0}
 
         .manifesto{
-            max-width:1000px;margin:60px auto;
-            line-height:1.7;font-size:1.6rem;
+            max-width:1000px;margin:60px auto;line-height:1.7;
+            font-size:1.6rem;color:#fff;text-shadow:0 0 15px rgba(255,255,255,0.4);
         }
-        .manifesto strong{color:#27F5F2;font-size:1.8rem}
+        .manifesto strong{color:#27F5F2;font-size:1.8rem;text-shadow:0 0 35px #27F5F2}
 
         .ca{
-            background:rgba(39,245,242,.15);
-            padding:18px 40px;border-radius:18px;
-            border:2px solid #27F5F2;
-            color:#27F5F2;font-family:monospace;
-            font-size:1.3rem;margin:70px 0;
+            background:rgba(39,245,242,0.15);padding:18px 40px;border-radius:18px;border:2px solid #27F5F2;
+            color:#27F5F2;font-family:monospace;font-size:1.3rem;word-break:break-all;margin:70px 0;
+            box-shadow:0 0 60px rgba(39,245,242,0.6);
         }
 
-        .icon-buttons{
-            display:flex;justify-content:center;
-            gap:60px;flex-wrap:wrap;margin:80px 0;
-        }
-        .icon-buttons a{
-            width:100px;height:100px;
-            filter:drop-shadow(0 0 20px #27F5F2);
-            transition:.4s;
-        }
-        .icon-buttons a:hover{
-            transform:translateY(-15px) scale(1.15);
-        }
-        .icon-buttons img{
-            width:100%;height:100%;object-fit:contain;
-        }
+        .icon-buttons{display:flex;justify-content:center;gap:60px;flex-wrap:wrap;margin:80px 0}
+        .icon-buttons a{width:100px;height:100px;transition:.5s;filter:drop-shadow(0 0 20px #27F5F2)}
+        .icon-buttons a:hover{transform:translateY(-20px) scale(1.2);filter:drop-shadow(0 0 70px #27F5F2)}
+        .icon-buttons img{width:100%;height:100%;object-fit:contain}
 
-        /* ================= INFO BLOCK ================= */
         .info-block{
-            margin:120px auto;max-width:1100px;
-            background:rgba(255,255,255,.06);
-            backdrop-filter:blur(20px);
-            border:1px solid rgba(39,245,242,.4);
-            border-radius:30px;
-            padding:80px 50px;
-            opacity:0;transform:translateY(60px);
-            transition:all 1s ease;
+            margin:150px auto;max-width:1100px;
+            background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);
+            border:1px solid rgba(39,245,242,0.4);border-radius:30px;
+            padding:80px 50px;box-shadow:0 20px 80px rgba(0,0,0,0.6);
+            opacity:0;transform:translateY(60px);transition:all 1.2s cubic-bezier(0.22,1,0.36,1);
         }
-        .info-block.animated{
-            opacity:1;transform:none;
-        }
+        .info-block.animated{opacity:1;transform:translateY(0)}
 
         .block-title{
-            font-size:4.5rem;
+            font-size:4.5rem;color:#27F5F2;text-shadow:0 0 50px #27F5F2;margin-bottom:60px;
             font-family:'Orbitron',sans-serif;
-            color:#27F5F2;margin-bottom:60px;
+            opacity:0;transform:translateY(30px);transition:all 0.9s ease-out;
         }
 
-        .supply{font-size:2.2rem;margin:30px 0}
-        .supply strong{color:#27F5F2}
+        .supply{font-size:2.2rem;color:#e0e0e0;margin:30px 0 25px;text-shadow:0 0 20px rgba(255,255,255,0.3);
+            opacity:0;transform:translateY(20px);transition:all 0.8s ease-out 0.2s}
+        .supply strong{color:#27F5F2;font-size:2.5rem;text-shadow:0 0 40px #27F5F2}
+
+        .status-buttons{display:flex;justify-content:center;gap:50px;flex-wrap:wrap;margin:50px 0;}
+        .status-btn{
+            background:#27F5F2;color:#fff;padding:18px 55px;border-radius:50px;
+            font-family:monospace;font-size:1.45rem;font-weight:900;letter-spacing:3px;text-transform:uppercase;
+            text-decoration:none;box-shadow:0 0 50px #27F5F2, 0 0 100px rgba(39,245,242,0.8);
+            animation:neonPulse 2.8s infinite alternate;transition:all 0.4s ease;
+        }
+        .status-btn:hover{
+            transform:translateY(-12px) scale(1.1);
+            box-shadow:0 0 100px #27F5F2, 0 0 160px rgba(39,245,242,1);
+            animation:neonPulse 1s infinite alternate;
+        }
+        @keyframes neonPulse{
+            0%{box-shadow:0 0 50px #27F5F2, 0 0 100px rgba(39,245,242,0.8)}
+            100%{box-shadow:0 0 70px #27F5F2, 0 0 140px rgba(39,245,242,1)}
+        }
+
+        .tax-info-line{
+            max-width:900px;margin:14px auto;font-size:1.4rem;color:#e0e0e0;line-height:1.9;
+            text-shadow:0 0 15px rgba(255,255,255,0.3);font-weight:500;
+            opacity:0;transform:translateY(20px);transition:all 0.9s ease-out;
+        }
+        .tax-info-line .highlight-value{
+            color:#27F5F2 !important;font-weight:900;text-shadow:0 0 35px #27F5F2;
+        }
+
+        .tax-table{
+            max-width:680px;margin:50px auto 30px;
+            background:rgba(39,245,242,0.08);border:1px solid rgba(39,245,242,0.4);
+            border-radius:20px;overflow:hidden;
+        }
+        .tax-header{
+            display:grid;grid-template-columns:1fr 2fr 1fr;padding:14px 20px;
+            background:rgba(39,245,242,0.15);font-size:1.1rem;font-weight:700;color:#aaa;
+        }
+        .tax-row-compact{
+            display:grid;grid-template-columns:1fr 2fr 1fr;padding:11px 20px;
+            border-top:1px solid rgba(39,245,242,0.2);font-size:1.25rem;transition:all 0.3s;
+        }
+        .tax-row-compact:hover{background:rgba(39,245,242,0.12);}
+        .tax-row-compact .percent{font-size:1.7rem;color:#27F5F2;font-weight:900;text-shadow:0 0 30px #27F5F2;}
+        .final{background:rgba(39,245,242,0.2)!important;}
+        .final .percent{font-size:2rem;}
+
+        .tax-benefit{
+            max-width:900px;margin:40px auto 0;font-size:1.4rem;color:#e0e0e0;line-height:1.9;
+            text-shadow:0 0 15px rgba(255,255,255,0.3);font-weight:500;
+            opacity:0;transform:translateY(20px);transition:all 0.9s ease-out 0.6s;
+        }
 
         .about-text{
-            max-width:720px;margin:0 auto;
-            font-size:1.4rem;line-height:1.6;
+            max-width:720px;margin:0 auto;font-size:1.38rem;line-height:1.6;text-align:center;color:#fff;
+            opacity:0;transform:translateY(30px);transition:all 1s ease-out 0.4s;
         }
-        .about-text strong{color:#27F5F2}
+        .about-text strong{color:#27F5F2;text-shadow:0 0 40px #27F5F2}
 
-        /* ================= MOBILE ================= */
+        .animated *{opacity:1 !important;transform:none !important;}
+
+        /* ФИКС ДЛЯ МОБИЛЬНЫХ — ТЕКСТ ВИДЕН В TOKENOMICS И ABOUT */
         @media(max-width:768px){
-            h1{font-size:3.5rem}
-            .logo{width:200px;height:200px}
-            .manifesto{font-size:1.25rem}
-            .block-title{font-size:2.8rem}
-            .info-block{padding:50px 25px}
+            .section{padding:120px 15px 80px}
+            .logo{width:260px;height:260px}
+            h1{font-size:5.5rem}
+            .manifesto{font-size:1.4rem;padding:0 15px}
+            .ca{font-size:1.1rem;padding:14px 20px;max-width:95%}
+            .icon-buttons{gap:40px}
+            .icon-buttons a{width:80px;height:80px}
+            .info-block{
+                margin:80px auto;max-width:95%;padding:50px 25px;
+            }
+            .block-title{font-size:3.2rem;margin-bottom:40px}
+            .supply{font-size:1.8rem}
+            .supply strong{font-size:2rem}
+            .status-buttons{gap:30px}
+            .status-btn{font-size:1.2rem;padding:14px 35px}
+            .tax-info-line{font-size:1.3rem;max-width:95%}
+            .tax-table{max-width:95%}
+            .tax-header,.tax-row-compact{font-size:1.1rem;padding:10px 15px}
+            .tax-row-compact .percent{font-size:1.5rem}
+            .final .percent{font-size:1.8rem}
+            .tax-benefit{font-size:1.3rem;max-width:95%;padding:0 15px}
+            .about-text{font-size:1.3rem;max-width:95%;padding:0 15px}
+        }
+
+        @media(max-width:480px){
+            .menu{gap:20px;top:15px}
+            .menu a{font-size:0.8rem}
+            .logo{width:220px;height:220px}
+            h1{font-size:4.5rem}
+            .manifesto{font-size:1.3rem}
+            .ca{font-size:1rem;padding:12px 18px}
+            .icon-buttons{gap:30px}
             .icon-buttons a{width:70px;height:70px}
+            .block-title{font-size:2.8rem}
+            .supply{font-size:1.6rem}
+            .status-btn{font-size:1.1rem;padding:12px 30px}
+            .tax-info-line{font-size:1.2rem}
+            .tax-header,.tax-row-compact{font-size:1rem}
+            .tax-row-compact .percent{font-size:1.4rem}
+            .final .percent{font-size:1.6rem}
+            .about-text{font-size:1.2rem}
         }
     </style>
 </head>
 <body>
 
-<video id="bg-video" autoplay muted loop playsinline>
-    <source src="https://i.imgur.com/Wt2peow.mp4" type="video/mp4">
-</video>
-<div class="overlay"></div>
+    <video id="bg-video" autoplay muted loop playsinline>
+        <source src="https://i.imgur.com/Wt2peow.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
 
-<div class="menu-wrapper">
-    <div class="burger" id="burger">
-        <span></span><span></span><span></span>
-    </div>
-    <nav class="menu" id="menu">
+    <div class="menu">
         <a href="#about">About</a>
         <a href="#howtobuy">Buy Zazzy</a>
         <a href="#tokenomics-block">Tokenomics</a>
         <a href="#contract">Contract</a>
-        <a href="#">Telegram</a>
-        <a href="#">X</a>
-    </nav>
-</div>
-
-<section id="howtobuy" class="section">
-    <img src="logo.png" class="logo" alt="ZAZZY">
-    <h1>$ZAZZY</h1>
-
-    <div class="manifesto">
-        Maximum <strong>0.1%</strong> per wallet. Forever.<br>
-        No whales. No rugs. Only fairness.
+        <a href="#" class="btn">Telegram</a>
+        <a href="#" class="btn">X</a>
     </div>
 
-    <p class="ca" id="contract">0xYOUR_CONTRACT_ADDRESS</p>
+    <section id="howtobuy" class="section">
+        <img src="logo.png" alt="ZAZZY" class="logo">
+        <h1>$ZAZZY</h1>
 
-    <div class="icon-buttons">
-        <a href="#"><img src="PancakeSwap.png" loading="lazy"></a>
-        <a href="#"><img src="DexScreener.png" loading="lazy"></a>
-        <a href="#"><img src="CoinGecko.png" loading="lazy"></a>
-        <a href="#"><img src="CoinmarketCap.png" loading="lazy"></a>
-        <a href="#"><img src="Telegram.png" loading="lazy"></a>
-        <a href="#"><img src="x.png" loading="lazy"></a>
-        <a href="#"><img src="GitHub.png" loading="lazy"></a>
-        <a href="#"><img src="Reddit.png" loading="lazy"></a>
-    </div>
-</section>
+        <div class="manifesto">
+            <p>Whales and funds have been farming retail for years.<br>
+               One gopher looked up and said: <strong>Enough!</strong><br>
+               He wrote the law straight into the smart-contract:<br>
+               <strong>Maximum 0.1% per wallet. Forever.</strong><br>
+               No exceptions. No mercy.<br>
+               Now every gopher is equal.<br>
+               And every gopher gets rich.<br>
+               <strong>The fairest meme coin that ever lived.</strong>
+            </p>
+        </div>
 
-<section id="tokenomics-block" class="info-block section">
-    <div class="block-title">TOKENOMICS</div>
-    <div class="supply">Total Supply: <strong>1,000,000,000,000,000 ZAZZY</strong></div>
-</section>
+        <p class="ca" id="contract">0xВСТАВЬ_СВОЙ_АДРЕС_СЮДА</p>
 
-<section id="about" class="info-block section">
-    <div class="block-title">ABOUT</div>
-    <div class="about-text">
-        <strong>The code is the law.</strong><br><br>
-        No whales. No team tokens. No lies.<br>
-        Just pure on-chain fairness.
-    </div>
-</section>
+        <div class="icon-buttons">
+            <a href="#" title="PancakeSwap"><img src="PancakeSwap.png"></a>
+            <a href="#" title="DexScreener"><img src="DexScreener.png"></a>
+            <a href="#" title="CoinGecko"><img src="CoinGecko.png"></a>
+            <a href="#" title="CoinMarketCap"><img src="CoinmarketCap.png"></a>
+            <a href="#" title="Telegram"><img src="Telegram.png"></a>
+            <a href="#" title="X.com"><img src="x.png"></a>
+            <a href="#" title="GitHub"><img src="GitHub.png"></a>
+            <a href="#" title="Reddit"><img src="Reddit.png"></a>
+        </div>
+    </section>
 
-<script>
-    const burger=document.getElementById('burger');
-    const menu=document.getElementById('menu');
+    <section id="tokenomics-block" class="info-block section">
+        <div class="block-title">TOKENOMICS</div>
+        <div class="supply">Total Supply: <strong>1 000 000 000 000 000 000 000 $ZAZZY</strong></div>
 
-    burger.addEventListener('click',()=>{
-        menu.classList.toggle('active');
-    });
+        <div class="status-buttons">
+            <a href="https://bscscan.com/tx/ВСТАВЬ_ТРАНЗАКЦИЮ_RENOUNCE" target="_blank" class="status-btn">CONTRACT RENOUNCED</a>
+            <a href="https://team.finance/view-lock?id=ВСТАВЬ_ID_ЛОКА" target="_blank" class="status-btn">LP LOCKED FOREVER</a>
+        </div>
 
-    document.querySelectorAll('.menu a').forEach(link=>{
-        link.addEventListener('click',()=>{
-            menu.classList.remove('active');
-        });
-    });
+        <div class="tax-info-line">Max Buy per transaction: <span class="highlight-value">0.1% of total supply</span></div>
+        <div class="tax-info-line">Max Wallet holding: <span class="highlight-value">0.1% of total supply</span></div>
+        <div style="height:20px;"></div>
 
-    document.querySelectorAll('.info-block').forEach(block=>{
-        const obs=new IntersectionObserver(entries=>{
-            entries.forEach(e=>{
-                if(e.isIntersecting)block.classList.add('animated');
+        <div style="margin:30px 0 40px; text-align:center;">
+            <div class="tax-info-line">Tax Sell: <span class="highlight-value">0% (always)</span></div>
+            <div class="tax-info-line" style="margin-top:2px;">Tax Buy — <span class="highlight-value">dynamic:</span></div>
+        </div>
+
+        <div class="tax-table">
+            <div class="tax-header">
+                <span>Stage</span>
+                <span>Market Cap</span>
+                <span>Buy Tax</span>
+            </div>
+            <div class="tax-row-compact"><span>Start</span><span>&lt; $5M</span><span class="percent">10.0%</span></div>
+            <div class="tax-row-compact"><span>1</span><span>$5M — $15M</span><span class="percent">8.0%</span></div>
+            <div class="tax-row-compact"><span>2</span><span>$15M — $30M</span><span class="percent">6.0%</span></div>
+            <div class="tax-row-compact"><span>3</span><span>$30M — $50M</span><span class="percent">4.0%</span></div>
+            <div class="tax-row-compact"><span>4</span><span>$50M — $75M</span><span class="percent">2.0%</span></div>
+            <div class="tax-row-compact"><span>5</span><span>$75M — $100M</span><span class="percent">1.0%</span></div>
+            <div class="tax-row-compact final"><span>Final</span><span>≥ $100M</span><span class="percent">0.0%</span></div>
+        </div>
+
+        <div class="tax-benefit">
+            All buy tax goes to the liquidity pool locked forever.<br>
+            No dumps. No rug. Only fair growth and stability.<br>
+            Your money works for the chart, not against it.
+        </div>
+    </section>
+
+    <section id="about" class="info-block section">
+        <div class="block-title">ABOUT</div>
+        <div class="about-text">
+            A single gopher saw the truth: whales farming retail, devs dumping, endless rugs, paid shillers.<br><br>
+            <strong style="font-size:1.95rem;">He said: NO MORE.</strong><br><br>
+            He coded the ultimate revenge:<br>
+            <strong>Max 0.1% per wallet. Forever.</strong> No whales. No team tokens.<br>
+            Contract renounced. 100% LP locked forever. Every buy tax → LP only.<br><br>
+            No paid influencers. No bots. No lies.<br>
+            Every holder is the movement.<br><br>
+            <strong style="font-size:2.05rem;">One gopher started it.<br>
+            Millions will finish it.</strong><br><br>
+            <strong style="font-size:2.2rem;">The code is the law.<br>
+            We came to destroy the whales’ rules.</strong>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
             });
-        },{threshold:.3});
-        obs.observe(block);
-    });
-</script>
+        });
 
+        document.querySelectorAll('.info-block').forEach(block => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) block.classList.add('animated');
+                });
+            }, { threshold: 0.3 });
+            observer.observe(block);
+        });
+    </script>
 </body>
 </html>
-
