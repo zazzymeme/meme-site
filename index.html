@@ -9,138 +9,136 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        body{background:#000;color:#fff;overflow-x:hidden;position:relative;font-family:Inter,sans-serif}
+        body{background:#000;color:#fff;overflow-x:hidden;position:relative}
         
-        #bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;pointer-events:none}
-        .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.68);z-index:2}
+        #bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;pointer-events:none;}
+        .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.68);z-index:2}
 
-        /* МЕНЮ + БУРГЕР НА МОБИЛЬНЫХ */
-        .header{
-            position:fixed;top:0;left:0;width:100%;z-index:999;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);
-            display:flex;justify-content:center;align-items:center;height:70px;
-        }
         .menu{
-            display:flex;gap:45px;flex-wrap:wrap;justify-content:center;align-items:center;
+            position:absolute;top:25px;left:50%;transform:translateX(-50%);
+            display:flex;gap:45px;z-index:999;flex-wrap:wrap;justify-content:center;
         }
         .menu a{
-            font-weight:500;font-size:.9rem;color:#e0e0e0;text-decoration:none;
-            text-transform:uppercase;letter-spacing:2.5px;transition:.5s;
+            font-weight:500;font-size:0.9rem;color:#e0e0e0;text-decoration:none;
+            text-transform:uppercase;letter-spacing:2.5px;transition:all .5s;
         }
         .menu a:hover{color:#27F5F2;text-shadow:0 0 20px #27F5F2;transform:translateY(-3px)}
 
-        /* БУРГЕР МЕНЮ */
-        .burger{
-            display:none;position:absolute;left:20px;top:50%;transform:translateY(-50%);
-            width:30px;height:22px;cursor:pointer;z-index:1000;
-        }
-        .burger span{
-            display:block;width:100%;height:3px;background:#27F5F2;margin:5px 0;transition:.3s;
-            border-radius:3px;
-        }
-        .burger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-        .burger.active span:nth-child(2){opacity:0}
-        .burger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px)}
-
         .section{padding:180px 20px 100px;text-align:center;position:relative;z-index:10}
 
-        .logo{width:320px;height:320px;border-radius:50%;border:1.5px solid #27F5F2;
-            box-shadow:0 0 30px rgba(39,245,242,.8);animation:pulse 4s infinite}
-        @keyframes pulse{50%{box-shadow:0 0 70px #27F5F2}}
+        .logo{
+            width:320px;height:320px;border-radius:50%;border:1.5px solid #27F5F2;
+            box-shadow:0 0 30px rgba(39,245,242,0.8);animation:pulse 4s infinite;
+        }
+        @keyframes pulse{
+            0%,100%{box-shadow:0 0 30px rgba(39,245,242,0.8)}
+            50%{box-shadow:0 0 70px #27F5F2}
+        }
 
-        h1{font-family:Orbitron,sans-serif;font-size:8.5rem;color:#27F5F2;text-shadow:0 0 60px #27F5F2;margin:40px 0}
-        .manifesto{max-width:1000px;margin:60px auto;line-height:1.7;font-size:1.6rem;text-shadow:0 0 15px #fff4}
+        h1{font-family:'Orbitron',sans-serif;font-size:8.5rem;color:#27F5F2;
+           text-shadow:0 0 60px rgba(39,245,242,0.8);margin:40px 0}
+
+        .manifesto{
+            max-width:1000px;margin:60px auto;line-height:1.7;
+            font-size:1.6rem;color:#fff;text-shadow:0 0 15px rgba(255,255,255,0.4);
+        }
         .manifesto strong{color:#27F5F2;font-size:1.8rem;text-shadow:0 0 35px #27F5F2}
 
-        .ca{background:#27f5f21a;padding:18px 40px;border-radius:18px;border:2px solid #27F5F2;color:#27F5F2;
-            font-family:monospace;font-size:1.3rem;margin:70px 0;box-shadow:0 0 60px #27f5f266;word-break:break-all}
+        .ca{
+            background:rgba(39,245,242,0.15);padding:18px 40px;border-radius:18px;border:2px solid #27F5F2;
+            color:#27F5F2;font-family:monospace;font-size:1.3rem;word-break:break-all;margin:70px 0;
+            box-shadow:0 0 60px rgba(39,245,242,0.6);
+        }
 
         .icon-buttons{display:flex;justify-content:center;gap:60px;flex-wrap:wrap;margin:80px 0}
         .icon-buttons a{width:100px;height:100px;transition:.5s;filter:drop-shadow(0 0 20px #27F5F2)}
         .icon-buttons a:hover{transform:translateY(-20px) scale(1.2);filter:drop-shadow(0 0 70px #27F5F2)}
         .icon-buttons img{width:100%;height:100%;object-fit:contain}
 
-        .info-block{margin:150px auto;max-width:1100px;background:#fff6;backdrop-filter:blur(20px);border:1px solid #27f5f24d;
-            border-radius:30px;padding:80px 50px;box-shadow:0 20px 80px #0006;opacity:0;transform:translateY(60px);transition:1.2s cubic-bezier(.22,1,.36,1)}
-        .info-block.animated{opacity:1;transform:none}
+        .info-block{
+            margin:150px auto;max-width:1100px;
+            background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);
+            border:1px solid rgba(39,245,242,0.4);border-radius:30px;
+            padding:80px 50px;box-shadow:0 20px 80px rgba(0,0,0,0.6);
+            opacity:0;transform:translateY(60px);transition:all 1.2s cubic-bezier(0.22,1,0.36,1);
+        }
+        .info-block.animated{opacity:1;transform:translateY(0)}
 
-        .block-title{font-family:Orbitron,sans-serif;font-size:4.5rem;color:#27F5F2;text-shadow:0 0 50px #27F5F2;margin-bottom:60px;
-            opacity:0;transform:translateY(30px);transition:.9s ease-out}
-
-        .supply{font-size:2.2rem;color:#e0e0e0;margin:30px 0 25px;text-shadow:0 0 20px #fff3;opacity:0;transform:translateY(20px);transition:.8s ease-out .2s}
-        .supply strong{color:#27F5F2;font-size:2.5rem;text-shadow:0 0 40px #27F5F2}
-
-        .status-buttons{display:flex;justify-content:center;gap:50px;flex-wrap:wrap;margin:50px 0}
-        .status-btn{background:#27F5F2;color:#fff;padding:18px 55px;border-radius:50px;font-family:monospace;
-            font-size:1.45rem;font-weight:900;letter-spacing:3px;text-transform:uppercase;text-decoration:none;
-            box-shadow:0 0 50px #27F5F2,0 0 100px #27f5f288;animation:neonPulse 2.8s infinite alternate;transition:.4s}
-        .status-btn:hover{transform:translateY(-12px) scale(1.1);box-shadow:0 0 100px #27F5F2,0 0 160px #27f5f2ee}
-        @keyframes neonPulse{50%{box-shadow:0 0 70px #27F5F2,0 0 140px #27f5f2cc}}
-
-        .tax-info-line{max-width:900px;margin:14px auto;font-size:1.4rem;color:#e0e0e0;line-height:1.9;
-            text-shadow:0 0 15px #fff3;font-weight:500;opacity:0;transform:translateY(20px);transition:.9s ease-out}
-        .tax-info-line .highlight-value{color:#27F5F2;font-weight:900;text-shadow:0 0 35px #27F5F2}
-
-        .tax-table{max-width:680px;margin:50px auto 30px;background:#27f5f20d;border:1px solid #27f5f24d;border-radius:20px;overflow:hidden}
-        .tax-header,.tax-row-compact{display:grid;grid-template-columns:1fr 2fr 1fr;padding:14px 20px;font-size:1.25rem}
-        .tax-header{background:#27f5f21a;color:#aaa;font-weight:700}
-        .tax-row-compact{border-top:1px solid #27f5f233;transition:.3s}
-        .tax-row-compact:hover{background:#27f5f21a}
-        .tax-row-compact .percent{font-size:1.7rem;color:#27F5F2;font-weight:900;text-shadow:0 0 30px #27F5F2}
-        .final{background:#27f5f233!important}
-        .final .percent{font-size:2rem}
-
-        .tax-benefit{max-width:900px;margin:40px auto 0;font-size:1.4rem;color:#e0e0e0;line-height:1.9;
-            text-shadow:0 0 15px #fff3;font-weight:500;opacity:0;transform:translateY(20px);transition:.9s ease-out .6s}
-
-        .about-text{max-width:720px;margin:0 auto;font-size:1.38rem;line-height:1.6;text-align:center;color:#fff;
-            opacity:0;transform:translateY(30px);transition:1s ease-out .4s}
-        .about-text strong{color:#27F5F2;text-shadow:0 0 40px #27F5F2}
-
-        .animated *{opacity:1!important;transform:none!important}
-
-        /* МОБИЛЬНАЯ АДАПТАЦИЯ + БУРГЕР МЕНЮ */
-        @media(max-width:900px){
-            .menu{display:none;flex-direction:column;background:rgba(0,0,0,.9);backdrop-filter:blur(20px);
-                position:fixed;top:0;left:0;width:100%;height:100vh;padding-top:80px;gap:30px}
-            .menu.active{display:flex}
-            .burger{display:block}
-            .header{justify-content:flex-start;padding-left:60px}
-            .section{padding:140px 15px 80px}
-            .logo{width:260px;height:260px}
-            h1{font-size:6rem}
-            .manifesto{font-size:1.4rem}
-            .ca{font-size:1.1rem;padding:14px 25px}
-            .icon-buttons{gap:40px}
-            .icon-buttons a{width:80px;height:80px}
-            .info-block{margin:100px auto;padding:60px 30px}
-            .block-title{font-size:3.5rem}
-            .supply{font-size:1.8rem}
-            .supply strong{font-size:2rem}
-            .status-buttons{gap:30px}
-            .status-btn{font-size:1.2rem;padding:14px 40px}
-            .tax-info-line{font-size:1.3rem}
-            .tax-table{max-width:95%}
-            .tax-header,.tax-row-compact{font-size:1.1rem;padding:10px}
-            .tax-row-compact .percent{font-size:1.5rem}
-            .final .percent{font-size:1.8rem}
-            .tax-benefit{font-size:1.3rem}
-            .about-text{font-size:1.3rem}
+        .block-title{
+            font-size:4.5rem;color:#27F5F2;text-shadow:0 0 50px #27F5F2;margin-bottom:60px;
+            font-family:'Orbitron',sans-serif;
+            opacity:0;transform:translateY(30px);transition:all 0.9s ease-out;
         }
 
-        @media(max-width:480px){
-            h1{font-size:5rem}
-            .manifesto{font-size:1.3rem}
-            .ca{font-size:1rem}
-            .icon-buttons{gap:30px}
-            .icon-buttons a{width:70px;height:70px}
-            .block-title{font-size:3rem}
-            .supply{font-size:1.6rem}
-            .status-btn{font-size:1.1rem;padding:12px 30px}
-            .tax-info-line{font-size:1.2rem}
-            .tax-header,.tax-row-compact{font-size:1rem}
-            .tax-row-compact .percent{font-size:1.4rem}
-            .final .percent{font-size:1.6rem}
-            .about-text{font-size:1.2rem}
+        .supply{font-size:2.2rem;color:#e0e0e0;margin:30px 0 25px;text-shadow:0 0 20px rgba(255,255,255,0.3);
+            opacity:0;transform:translateY(20px);transition:all 0.8s ease-out 0.2s}
+        .supply strong{color:#27F5F2;font-size:2.5rem;text-shadow:0 0 40px #27F5F2}
+
+        .status-buttons{display:flex;justify-content:center;gap:50px;flex-wrap:wrap;margin:50px 0;}
+        .status-btn{
+            background:#27F5F2;color:#fff;padding:18px 55px;border-radius:50px;
+            font-family:monospace;font-size:1.45rem;font-weight:900;letter-spacing:3px;text-transform:uppercase;
+            text-decoration:none;box-shadow:0 0 50px #27F5F2, 0 0 100px rgba(39,245,242,0.8);
+            animation:neonPulse 2.8s infinite alternate;transition:all 0.4s ease;
+        }
+        .status-btn:hover{
+            transform:translateY(-12px) scale(1.1);
+            box-shadow:0 0 100px #27F5F2, 0 0 160px rgba(39,245,242,1);
+            animation:neonPulse 1s infinite alternate;
+        }
+        @keyframes neonPulse{
+            0%{box-shadow:0 0 50px #27F5F2, 0 0 100px rgba(39,245,242,0.8)}
+            100%{box-shadow:0 0 70px #27F5F2, 0 0 140px rgba(39,245,242,1)}
+        }
+
+        .tax-info-line{
+            max-width:900px;margin:14px auto;font-size:1.4rem;color:#e0e0e0;line-height:1.9;
+            text-shadow:0 0 15px rgba(255,255,255,0.3);font-weight:500;
+            opacity:0;transform:translateY(20px);transition:all 0.9s ease-out;
+        }
+        .tax-info-line .highlight-value{
+            color:#27F5F2 !important;font-weight:900;text-shadow:0 0 35px #27F5F2;
+        }
+
+        .tax-table{
+            max-width:680px;margin:50px auto 30px;
+            background:rgba(39,245,242,0.08);border:1px solid rgba(39,245,242,0.4);
+            border-radius:20px;overflow:hidden;
+        }
+        .tax-header{
+            display:grid;grid-template-columns:1fr 2fr 1fr;padding:14px 20px;
+            background:rgba(39,245,242,0.15);font-size:1.1rem;font-weight:700;color:#aaa;
+        }
+        .tax-row-compact{
+            display:grid;grid-template-columns:1fr 2fr 1fr;padding:11px 20px;
+            border-top:1px solid rgba(39,245,242,0.2);font-size:1.25rem;transition:all 0.3s;
+        }
+        .tax-row-compact:hover{background:rgba(39,245,242,0.12);}
+        .tax-row-compact .percent{font-size:1.7rem;color:#27F5F2;font-weight:900;text-shadow:0 0 30px #27F5F2;}
+        .final{background:rgba(39,245,242,0.2)!important;}
+        .final .percent{font-size:2rem;}
+
+        .tax-benefit{
+            max-width:900px;margin:40px auto 0;font-size:1.4rem;color:#e0e0e0;line-height:1.9;
+            text-shadow:0 0 15px rgba(255,255,255,0.3);font-weight:500;
+            opacity:0;transform:translateY(20px);transition:all 0.9s ease-out 0.6s;
+        }
+
+        .about-text{
+            max-width:720px;margin:0 auto;font-size:1.38rem;line-height:1.6;text-align:center;color:#fff;
+            opacity:0;transform:translateY(30px);transition:all 1s ease-out 0.4s;
+        }
+        .about-text strong{color:#27F5F2;text-shadow:0 0 40px #27F5F2}
+
+        .animated *{opacity:1 !important;transform:none !important;}
+
+        @media(max-width:768px){
+            .block-title{font-size:3.5rem}
+            .about-text{font-size:1.3rem !important;line-height:1.6}
+            .logo{width:260px;height:260px}
+            .status-btn{font-size:1.2rem;padding:14px 40px}
+            .status-buttons{gap:25px}
+            .tax-info-line{font-size:1.3rem}
         }
     </style>
 </head>
@@ -151,21 +149,13 @@
     </video>
     <div class="overlay"></div>
 
-    <!-- ХЕДЕР С БУРГЕР МЕНЮ -->
-    <div class="header">
-        <div class="burger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="menu">
-            <a href="#about">About</a>
-            <a href="#howtobuy">Buy Zazzy</a>
-            <a href="#tokenomics-block">Tokenomics</a>
-            <a href="#contract">Contract</a>
-            <a href="#" class="btn">Telegram</a>
-            <a href="#" class="btn">X</a>
-        </div>
+    <div class="menu">
+        <a href="#about">About</a>
+        <a href="#howtobuy">Buy Zazzy</a>
+        <a href="#tokenomics-block">Tokenomics</a>
+        <a href="#contract">Contract</a>
+        <a href="#" class="btn">Telegram</a>
+        <a href="#" class="btn">X</a>
     </div>
 
     <section id="howtobuy" class="section">
@@ -200,7 +190,8 @@
 
     <section id="tokenomics-block" class="info-block section">
         <div class="block-title">TOKENOMICS</div>
-        <div class="supply">Total Supply: <strong>1 000 000 000 000 000 $ZAZZY</strong></div>
+        <!-- ИСПРАВЛЕНО: обычные пробелы вместо &nbsp;, чтобы мобильные не думали, что это номер телефона -->
+        <div class="supply">Total Supply: <strong>1 000 000 000 000 000 000 $ZAZZY</strong></div>
 
         <div class="status-buttons">
             <a href="https://bscscan.com/tx/ВСТАВЬ_ТРАНЗАКЦИЮ_RENOUNCE" target="_blank" class="status-btn">CONTRACT RENOUNCED</a>
@@ -240,7 +231,7 @@
 
     <section id="about" class="info-block section">
         <div class="block-title">ABOUT</div>
-        <div class="about-text">
+        <div class="about-text" style="font-size:1.38rem; line-height:1.6; max-width:720px; margin:0 auto; text-align:center; color:#fff;">
             A single gopher saw the truth: whales farming retail, devs dumping, endless rugs, paid shillers.<br><br>
             <strong style="font-size:1.95rem;">He said: NO MORE.</strong><br><br>
             He coded the ultimate revenge:<br>
@@ -256,35 +247,13 @@
     </section>
 
     <script>
-        // БУРГЕР МЕНЮ
-        const burger = document.querySelector('.burger');
-        const menu = document.querySelector('.menu');
-
-        burger.addEventListener('click', () => {
-            burger.classList.toggle('active');
-            menu.classList.toggle('active');
-        });
-
-        // Закрытие меню по клику вне
-        document.addEventListener('click', (e) => {
-            if (!menu.contains(e.target) && !burger.contains(e.target)) {
-                burger.classList.remove('active');
-                menu.classList.remove('active');
-            }
-        });
-
-        // Плавный скролл
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
                 e.preventDefault();
-                document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
-                // Закрываем меню после клика
-                burger.classList.remove('active');
-                menu.classList.remove('active');
+                document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
             });
         });
 
-        // Анимация блоков
         document.querySelectorAll('.info-block').forEach(block => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
