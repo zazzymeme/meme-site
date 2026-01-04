@@ -194,9 +194,12 @@
             50%{box-shadow:0 0 70px #27F5F2}
         }
 
-        h1{font-family:'Orbitron',sans-serif;font-size:6.5rem;color:#27F5F2;
-           text-shadow:0 0 60px rgba(39,245,242,.8);margin:30px 0;
-           opacity: 0; animation: fadeInUp 1.2s ease-out 1.4s forwards;}
+        /* Последовательное появление элементов главной секции */
+        h1{
+            font-family:'Orbitron',sans-serif;font-size:6.5rem;color:#27F5F2;
+            text-shadow:0 0 60px rgba(39,245,242,.8);margin:30px 0;
+            opacity: 0; animation: fadeInUp 1.2s ease-out 1.4s forwards;
+        }
 
         .manifesto{
             max-width:100%;margin:50px auto;line-height:1.7;
@@ -225,7 +228,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Остальные стили — полностью из твоего идеального кода */
+        /* Остальные стили */
         .info-block{
             margin:100px auto;max-width:95%;padding:60px 30px;
             background:rgba(255,255,255,.06);backdrop-filter:blur(20px);
@@ -295,10 +298,10 @@
         }
 
         .about-text{
-            max-width:95%;margin:0 auto;font-size:1.3rem;line-height:1.6;text-align:center;color:#fff;
+            max-width:95%;margin:0 auto;font-size:1.3rem;line-height:1.8;text-align:center;color:#fff;
             opacity:0;transform:translateY(30px);transition:all 1s ease-out .4s;padding:0 10px;
         }
-        .about-text strong{color:#27F5F2;text-shadow:0 0 40px #27F5F2}
+        .about-text strong{color:#27F5F2;text-shadow:0 0 40px #27F5F2;font-size:1.6rem;}
 
         .animated *{opacity:1 !important;transform:none !important;}
 
@@ -364,7 +367,6 @@
     </div>
 
     <section id="howtobuy" class="section">
-        <!-- Логотип с частицами -->
         <div class="logo-container">
             <img src="logo.png" alt="ZAZZY" class="logo">
             <div id="particles-js"></div>
@@ -398,7 +400,6 @@
         </div>
     </section>
 
-    <!-- Полностью сохранённые секции Tokenomics и About -->
     <section id="tokenomics-block" class="info-block section">
         <div class="block-title">TOKENOMICS</div>
         <div class="supply">Total Supply: <strong>1 000 000 000 000 000 $ZAZZY</strong></div>
@@ -442,25 +443,44 @@
     <section id="about" class="info-block section">
         <div class="block-title">ABOUT</div>
         <div class="about-text">
-            A single gopher saw the truth: whales farming retail, devs dumping, endless rugs, paid shillers.<br><br>
-            <strong style="font-size:1.95rem;">He said: NO MORE.</strong><br><br>
-            He coded the ultimate revenge:<br>
-            <strong>Max 0.1% per wallet. Forever.</strong> No whales. No team tokens.<br>
-            Contract renounced. 100% LP locked forever. Every buy tax → LP only.<br><br>
-            No paid influencers. No bots. No lies.<br>
-            Every holder is the movement.<br><br>
-            <strong style="font-size:2.05rem;">One gopher started it.<br>
+            A single gopher saw the truth:<br>
+            whales farming retail, devs dumping, endless rugs, paid shillers.<br><br>
+
+            He said: <strong>enough.</strong><br><br>
+
+            He wrote code instead of promises.<br>
+            Hard rules. No exceptions.<br><br>
+
+            <strong>Max 0.1% per wallet. Forever.</strong><br>
+            No team tokens. No hidden supply.<br>
+            Contract renounced.<br><br>
+
+            In ZAZZY, every buy strengthens the market’s foundation.<br>
+            Buy fees don’t go to people they go into liquidity locked forever.<br><br>
+
+            All buy tax flows directly into the LP pool.<br>
+            Liquidity cannot be removed. It cannot be touched.<br><br>
+
+            No paid influencers.<br>
+            No insider advantage.<br>
+            Bots gain nothing.<br><br>
+
+            Every holder matters.<br>
+            Every buy makes the market stronger.<br><br>
+
+            <strong>One gopher started it.<br>
             Millions will finish it.</strong><br><br>
-            <strong style="font-size:2.2rem;">The code is the law.<br>
-            We came to destroy the whales’ rules.</strong>
+
+            <strong>The code is the law.<br>
+            We don’t play by whales’ rules.</strong>
         </div>
     </section>
 
     <script>
-        // Инициализация частиц
+        // Частицы — количество увеличено в 2 раза (180)
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 90, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 180, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#27F5F2" },
                 "shape": { "type": "circle" },
                 "opacity": { "value": 0.7, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1 } },
@@ -483,16 +503,12 @@
                     "onhover": { "enable": true, "mode": "repulse" },
                     "onclick": { "enable": true, "mode": "push" },
                     "resize": true
-                },
-                "modes": {
-                    "repulse": { "distance": 100, "duration": 0.4 },
-                    "push": { "particles_nb": 4 }
                 }
             },
             "retina_detect": true
         });
 
-        // Остальной JS без изменений
+        // Остальной JavaScript
         const burger = document.getElementById('burger');
         const mobileMenu = document.getElementById('mobileMenu');
 
