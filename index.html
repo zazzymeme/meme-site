@@ -18,7 +18,7 @@
         #bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;pointer-events:none}
         .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.68);z-index:2}
 
-        /* Десктопное меню с анимацией появления */
+        /* Desktop menu with appearance animation */
         .menu {
             position: absolute;
             top: 25px;
@@ -78,7 +78,7 @@
             }
         }
 
-        /* Бургер-кнопка */
+        /* Burger button */
         .burger {
             position: fixed;
             top: 25px;
@@ -113,7 +113,7 @@
             to { opacity: 1; }
         }
 
-        /* Мобильное меню */
+        /* Mobile menu */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -149,7 +149,7 @@
 
         .section{padding:140px 20px 80px;text-align:center;position:relative;z-index:10}
 
-        /* Контейнер для логотипа и частиц */
+        /* Logo and particles container */
         .logo-container {
             position: relative;
             display: inline-block;
@@ -194,7 +194,7 @@
             50%{box-shadow:0 0 70px #27F5F2}
         }
 
-        /* Последовательное появление элементов главной секции */
+        /* Sequential appearance of main section elements */
         h1{
             font-family:'Orbitron',sans-serif;font-size:6.5rem;color:#27F5F2;
             text-shadow:0 0 60px rgba(39,245,242,.8);margin:30px 0;
@@ -228,7 +228,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Остальные стили */
+        /* Other styles */
         .info-block{
             margin:100px auto;max-width:95%;padding:60px 30px;
             background:rgba(255,255,255,.06);backdrop-filter:blur(20px);
@@ -342,6 +342,7 @@
     </video>
     <div class="overlay"></div>
 
+    <!-- English menu -->
     <div class="menu">
         <a href="#about">About</a>
         <a href="#howtobuy">Buy Zazzy</a>
@@ -456,7 +457,7 @@
             Contract renounced.<br><br>
 
             In ZAZZY, every buy strengthens the market’s foundation.<br>
-            Buy fees don’t go to people they go into liquidity locked forever.<br><br>
+            Buy fees don’t go to people — they go into liquidity locked forever.<br><br>
 
             All buy tax flows directly into the LP pool.<br>
             Liquidity cannot be removed. It cannot be touched.<br><br>
@@ -477,7 +478,7 @@
     </section>
 
     <script>
-        // Частицы — количество увеличено в 2 раза (180)
+        // Particles (180 particles)
         particlesJS("particles-js", {
             "particles": {
                 "number": { "value": 180, "density": { "enable": true, "value_area": 800 } },
@@ -508,7 +509,7 @@
             "retina_detect": true
         });
 
-        // Остальной JavaScript
+        // Burger and mobile menu
         const burger = document.getElementById('burger');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -524,6 +525,7 @@
             });
         });
 
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
                 const href = a.getAttribute('href');
@@ -534,6 +536,7 @@
             });
         });
 
+        // Scroll animation for blocks
         document.querySelectorAll('.info-block').forEach(block => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
