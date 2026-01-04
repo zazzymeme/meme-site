@@ -18,10 +18,10 @@ body{
 }
 
 /* BG */
-#bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:2}
+#bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.68);z-index:2}
 
-/* MENU */
+/* ===== MENU (DESKTOP) ===== */
 .menu{
     position:fixed;
     top:25px;
@@ -42,14 +42,14 @@ body{
 }
 .menu a:hover{color:#27F5F2;text-shadow:0 0 20px #27F5F2}
 
-/* BURGER */
+/* ===== BURGER ===== */
 .burger{
     display:none;
     position:fixed;
     top:25px;
     right:25px;
-    width:36px;
-    height:26px;
+    width:32px;
+    height:24px;
     flex-direction:column;
     justify-content:space-between;
     cursor:pointer;
@@ -60,27 +60,32 @@ body{
     background:#27F5F2;
     border-radius:4px;
     box-shadow:0 0 10px #27F5F2;
-    transition:.4s;
 }
 
+/* ===== MOBILE MENU ===== */
 @media(max-width:768px){
+    .burger{display:flex}
+
     .menu{
+        position:fixed;
+        top:0;
+        left:0;
+        transform:none;
+        width:100%;
+        height:100vh;
         flex-direction:column;
-        inset:0;
-        background:rgba(0,0,0,.96);
         justify-content:center;
-        opacity:0;
-        pointer-events:none;
-        transition:.4s;
+        align-items:center;
+        background:rgba(0,0,0,.95);
+        gap:30px;
+        display:none;
     }
     .menu.open{
-        opacity:1;
-        pointer-events:auto;
+        display:flex;
     }
-    .burger{display:flex}
 }
 
-/* SECTIONS */
+/* ===== SECTIONS ===== */
 .section{
     padding:140px 20px 80px;
     text-align:center;
@@ -114,128 +119,96 @@ h1{
     margin:50px auto;
     font-size:1.4rem;
     line-height:1.7;
-    text-shadow:0 0 15px rgba(255,255,255,.4);
     padding:0 10px;
 }
-.manifesto strong{color:#27F5F2;font-size:1.7rem}
 
+/* ===== CONTRACT ===== */
 .ca{
     background:rgba(39,245,242,.15);
-    padding:16px 30px;
+    padding:16px 20px;
     border-radius:18px;
     border:2px solid #27F5F2;
     color:#27F5F2;
     font-family:monospace;
-    font-size:1.1rem;
+    font-size:1rem;
     margin:60px auto;
     max-width:95%;
-    box-shadow:0 0 60px rgba(39,245,242,.6);
     word-break:break-all;
 }
 
-/* INFO BLOCKS */
+/* ===== INFO BLOCKS ===== */
 .info-block{
-    margin:100px auto;
+    margin:80px auto;
     max-width:95%;
-    padding:60px 30px;
+    padding:40px 20px;
     background:rgba(255,255,255,.06);
     backdrop-filter:blur(20px);
     border-radius:30px;
-    box-shadow:0 20px 60px rgba(0,0,0,.6);
-    opacity:0;
-    transform:translateY(60px);
-    transition:1s;
 }
 
-/* 🔑 КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ */
-.info-block,
+/* 🔑 НАДЁЖНЫЙ FIX ДЛЯ iOS */
 .info-block *{
     max-width:100%;
-    word-break:break-word;
-    overflow-wrap:anywhere;
     white-space:normal;
+    word-break:break-word;
 }
 
-.info-block.animated{
-    opacity:1;
-    transform:none;
-}
-
+/* ===== TITLES ===== */
 .block-title{
     font-family:Orbitron,sans-serif;
-    font-size:3.5rem;
+    font-size:3rem;
     color:#27F5F2;
-    text-shadow:0 0 50px #27F5F2;
-    margin-bottom:40px;
+    margin-bottom:30px;
 }
 
+/* ===== SUPPLY ===== */
 .supply{
-    font-size:1.8rem;
+    font-size:1.6rem;
     line-height:1.6;
-    margin-bottom:30px;
 }
 .supply strong{
     display:block;
-    color:#27F5F2;
-    font-size:2rem;
     margin-top:10px;
-}
-
-.tax-info-line{
-    font-size:1.3rem;
-    line-height:1.8;
-    margin:10px auto;
-}
-.tax-info-line .highlight-value{
+    font-size:1.7rem;
     color:#27F5F2;
-    font-weight:900;
 }
 
+/* ===== TABLE ===== */
 .tax-table{
-    max-width:100%;
+    width:100%;
     margin:30px auto;
-    background:rgba(39,245,242,.08);
-    border:1px solid rgba(39,245,242,.4);
     border-radius:20px;
     overflow:hidden;
+    border:1px solid rgba(39,245,242,.4);
 }
-.tax-header,
-.tax-row{
+.tax-header,.tax-row{
     display:grid;
     grid-template-columns:1fr 2fr 1fr;
-    padding:12px 15px;
+    padding:12px 10px;
 }
 .tax-header{
     background:rgba(39,245,242,.15);
     color:#aaa;
-    font-weight:700;
 }
 .tax-row{
     border-top:1px solid rgba(39,245,242,.2);
 }
-.tax-row .percent{
+.percent{
     color:#27F5F2;
     font-weight:900;
 }
 
+/* ===== ABOUT ===== */
 .about-text{
-    font-size:1.3rem;
-    line-height:1.7;
+    font-size:1.2rem;
+    line-height:1.6;
     padding:0 10px;
 }
-.about-text strong{
-    color:#27F5F2;
-    text-shadow:0 0 30px #27F5F2;
-}
+.about-text strong{color:#27F5F2}
 
 /* MOBILE */
 @media(max-width:480px){
     h1{font-size:5rem}
-    .block-title{font-size:3rem}
-    .supply{font-size:1.6rem}
-    .supply strong{font-size:1.8rem}
-    .tax-info-line{font-size:1.2rem}
-    .about-text{font-size:1.2rem}
 }
 </style>
 </head>
@@ -261,14 +234,13 @@ h1{
 </div>
 
 <section id="howtobuy" class="section">
-    <img src="logo.png" alt="ZAZZY" class="logo">
+    <img src="logo.png" class="logo">
     <h1>$ZAZZY</h1>
 
     <div class="manifesto">
-        Whales and funds farmed retail for years.<br>
+        Whales and funds have been farming retail for years.<br>
         <strong>Enough.</strong><br>
-        Max <strong>0.1%</strong> per wallet. Forever.<br>
-        The fairest meme coin that ever lived.
+        Max <strong>0.1%</strong> per wallet. Forever.
     </div>
 
     <p class="ca" id="contract">0xВСТАВЬ_СВОЙ_АДРЕС_СЮДА</p>
@@ -278,30 +250,20 @@ h1{
     <div class="block-title">TOKENOMICS</div>
 
     <div class="supply">
-        Total Supply:
+        Total Supply
         <strong>1 000 000 000 000 000</strong>
         <strong>$ZAZZY</strong>
     </div>
 
-    <div class="tax-info-line">
-        Max Wallet: <span class="highlight-value">0.1%</span>
-    </div>
-
     <div class="tax-table">
         <div class="tax-header">
-            <span>Stage</span>
-            <span>Market Cap</span>
-            <span>Buy Tax</span>
+            <span>Stage</span><span>Market Cap</span><span>Buy Tax</span>
         </div>
         <div class="tax-row">
-            <span>Start</span>
-            <span>&lt; $5M</span>
-            <span class="percent">10%</span>
+            <span>Start</span><span>&lt; $5M</span><span class="percent">10%</span>
         </div>
         <div class="tax-row">
-            <span>Final</span>
-            <span>≥ $100M</span>
-            <span class="percent">0%</span>
+            <span>Final</span><span>≥ $100M</span><span class="percent">0%</span>
         </div>
     </div>
 </section>
@@ -311,34 +273,25 @@ h1{
     <div class="about-text">
         <strong>No whales. No rugs.</strong><br><br>
         The code is the law.<br>
-        Every holder is equal.<br>
-        No exceptions. Forever.
+        Every holder is equal.
     </div>
 </section>
 
 <script>
-const burger=document.getElementById('burger');
-const menu=document.getElementById('menu');
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
 
-burger.onclick=()=>{
+burger.addEventListener('click', ()=>{
     menu.classList.toggle('open');
-};
-
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.onclick=e=>{
-        e.preventDefault();
-        menu.classList.remove('open');
-        document.querySelector(a.getAttribute('href'))
-            .scrollIntoView({behavior:'smooth'});
-    };
 });
 
-document.querySelectorAll('.info-block').forEach(block=>{
-    new IntersectionObserver(entries=>{
-        if(entries[0].isIntersecting){
-            block.classList.add('animated');
-        }
-    },{threshold:.3}).observe(block);
+document.querySelectorAll('.menu a[href^="#"]').forEach(link=>{
+    link.addEventListener('click', e=>{
+        e.preventDefault();
+        menu.classList.remove('open');
+        document.querySelector(link.getAttribute('href'))
+            .scrollIntoView({behavior:'smooth'});
+    });
 });
 </script>
 
