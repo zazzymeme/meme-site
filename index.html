@@ -7,6 +7,10 @@
 
     <link rel="icon" href="favicon.png" sizes="512x512">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         body{background:#000;color:#fff;overflow-x:hidden;position:relative;font-family:Inter,sans-serif}
@@ -43,7 +47,6 @@
             transform: translateY(-20px);
             animation: menuItemFade 0.8s ease-out forwards;
         }
-        /* Задержка для каждого пункта меню */
         .menu a:nth-child(1) { animation-delay: 0.7s; }
         .menu a:nth-child(2) { animation-delay: 0.8s; }
         .menu a:nth-child(3) { animation-delay: 0.9s; }
@@ -75,7 +78,7 @@
             }
         }
 
-        /* Бургер-кнопка (только на мобильных) */
+        /* Бургер-кнопка */
         .burger {
             position: fixed;
             top: 25px;
@@ -101,22 +104,16 @@
             transition: all 0.3s ease;
             box-shadow: 0 0 15px #27F5F2;
         }
-        .burger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-        .burger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .burger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
-        }
+        .burger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+        .burger.active span:nth-child(2) { opacity: 0; }
+        .burger.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
 
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        /* Полноэкранное мобильное меню с анимацией */
+        /* Мобильное меню */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -133,25 +130,14 @@
             transform: translateX(100%);
             transition: transform 0.4s ease;
         }
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
+        .mobile-menu.active { transform: translateX(0); }
         .mobile-menu a {
-            font-weight:500;
-            font-size:1.8rem;
-            color:#e0e0e0;
-            text-decoration:none;
-            text-transform:uppercase;
-            letter-spacing:2px;
-            transition:all .5s;
-            padding:10px 20px;
-            opacity: 0;
-            transform: translateY(50px);
+            font-weight:500;font-size:1.8rem;color:#e0e0e0;text-decoration:none;
+            text-transform:uppercase;letter-spacing:2px;transition:all .5s;padding:10px 20px;
+            opacity: 0;transform: translateY(50px);
         }
         .mobile-menu.active a {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.6s ease-out;
+            opacity: 1;transform: translateY(0);transition: all 0.6s ease-out;
         }
         .mobile-menu.active a:nth-child(1) { transition-delay: 0.1s; }
         .mobile-menu.active a:nth-child(2) { transition-delay: 0.2s; }
@@ -159,31 +145,63 @@
         .mobile-menu.active a:nth-child(4) { transition-delay: 0.4s; }
         .mobile-menu.active a:nth-child(5) { transition-delay: 0.5s; }
         .mobile-menu.active a:nth-child(6) { transition-delay: 0.6s; }
-
-        .mobile-menu a:hover {
-            color:#27F5F2;
-            text-shadow:0 0 20px #27F5F2;
-            transform:scale(1.1);
-        }
+        .mobile-menu a:hover { color:#27F5F2;text-shadow:0 0 20px #27F5F2;transform:scale(1.1); }
 
         .section{padding:140px 20px 80px;text-align:center;position:relative;z-index:10}
 
-        /* Остальные стили без изменений */
-        .logo{
-            width:280px;height:280px;border-radius:50%;border:1.5px solid #27F5F2;
-            box-shadow:0 0 30px rgba(39,245,242,.8);animation:pulse 4s infinite;
+        /* Контейнер для логотипа и частиц */
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            margin: 40px 0;
         }
+
+        .logo {
+            position: relative;
+            z-index: 10;
+            width:280px;height:280px;border-radius:50%;border:1.5px solid #27F5F2;
+            box-shadow:0 0 30px rgba(39,245,242,.8);
+            opacity: 0;
+            transform: scale(0.7) rotate(-8deg);
+            animation: logoAppear 1.8s ease-out 0.4s forwards, pulse 4s infinite 2.2s;
+        }
+
+        #particles-js {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 340px;
+            height: 340px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+            animation: particlesFadeIn 2s ease-out 0.6s forwards;
+        }
+
+        @keyframes logoAppear {
+            0% { opacity: 0; transform: scale(0.7) rotate(-8deg); }
+            70% { opacity: 1; transform: scale(1.08) rotate(2deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0); }
+        }
+
+        @keyframes particlesFadeIn {
+            to { opacity: 1; }
+        }
+
         @keyframes pulse{
             0%,100%{box-shadow:0 0 30px rgba(39,245,242,.8)}
             50%{box-shadow:0 0 70px #27F5F2}
         }
 
         h1{font-family:'Orbitron',sans-serif;font-size:6.5rem;color:#27F5F2;
-           text-shadow:0 0 60px rgba(39,245,242,.8);margin:30px 0}
+           text-shadow:0 0 60px rgba(39,245,242,.8);margin:30px 0;
+           opacity: 0; animation: fadeInUp 1.2s ease-out 1.4s forwards;}
 
         .manifesto{
             max-width:100%;margin:50px auto;line-height:1.7;
             font-size:1.4rem;color:#fff;text-shadow:0 0 15px rgba(255,255,255,.4);padding:0 10px;
+            opacity: 0; animation: fadeInUp 1s ease-out 1.8s forwards;
         }
         .manifesto strong{color:#27F5F2;font-size:1.7rem;text-shadow:0 0 35px #27F5F2}
 
@@ -191,13 +209,23 @@
             background:rgba(39,245,242,.15);padding:16px 30px;border-radius:18px;border:2px solid #27F5F2;
             color:#27F5F2;font-family:monospace;font-size:1.1rem;margin:60px auto;max-width:90%;
             box-shadow:0 0 60px rgba(39,245,242,.6);word-break:break-all;
+            opacity: 0; animation: fadeInUp 1s ease-out 2.1s forwards;
         }
 
-        .icon-buttons{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin:60px 0;padding:0 10px}
+        .icon-buttons{
+            display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin:60px 0;padding:0 10px;
+            opacity: 0; animation: fadeInUp 1s ease-out 2.4s forwards;
+        }
         .icon-buttons a{width:80px;height:80px;transition:.5s;filter:drop-shadow(0 0 20px #27F5F2)}
         .icon-buttons a:hover{transform:translateY(-15px) scale(1.2);filter:drop-shadow(0 0 60px #27F5F2)}
         .icon-buttons img{width:100%;height:100%;object-fit:contain}
 
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Остальные стили — полностью из твоего идеального кода */
         .info-block{
             margin:100px auto;max-width:95%;padding:60px 30px;
             background:rgba(255,255,255,.06);backdrop-filter:blur(20px);
@@ -274,27 +302,17 @@
 
         .animated *{opacity:1 !important;transform:none !important;}
 
-        /* Адаптация под мобильные */
         @media(max-width: 768px) {
-            .burger {
-                display: flex;
-            }
-            .menu {
-                display: none;
-            }
+            .burger { display: flex; }
+            .menu { display: none; }
+            #particles-js { width: 280px; height: 280px; }
         }
 
         @media(max-width: 480px) {
-            .burger {
-                top: 15px;
-                right: 15px;
-                width: 45px;
-                height: 45px;
-            }
-            .burger span {
-                width: 30px;
-            }
+            .burger { top: 15px; right: 15px; width: 45px; height: 45px; }
+            .burger span { width: 30px; }
             .logo{width:220px;height:220px}
+            #particles-js { width: 240px; height: 240px; }
             h1{font-size:5rem}
             .manifesto{font-size:1.3rem}
             .manifesto strong{font-size:1.5rem}
@@ -321,7 +339,6 @@
     </video>
     <div class="overlay"></div>
 
-    <!-- Десктопное меню с анимацией -->
     <div class="menu">
         <a href="#about">About</a>
         <a href="#howtobuy">Buy Zazzy</a>
@@ -331,14 +348,12 @@
         <a href="#" class="btn">X</a>
     </div>
 
-    <!-- Бургер (мобильные) -->
     <div class="burger" id="burger">
         <span></span>
         <span></span>
         <span></span>
     </div>
 
-    <!-- Полноэкранное мобильное меню с анимацией пунктов -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="#about">About</a>
         <a href="#howtobuy">Buy Zazzy</a>
@@ -348,9 +363,13 @@
         <a href="#" class="btn">X</a>
     </div>
 
-    <!-- Остальной контент без изменений -->
     <section id="howtobuy" class="section">
-        <img src="logo.png" alt="ZAZZY" class="logo">
+        <!-- Логотип с частицами -->
+        <div class="logo-container">
+            <img src="logo.png" alt="ZAZZY" class="logo">
+            <div id="particles-js"></div>
+        </div>
+
         <h1>$ZAZZY</h1>
 
         <div class="manifesto">
@@ -379,6 +398,7 @@
         </div>
     </section>
 
+    <!-- Полностью сохранённые секции Tokenomics и About -->
     <section id="tokenomics-block" class="info-block section">
         <div class="block-title">TOKENOMICS</div>
         <div class="supply">Total Supply: <strong>1 000 000 000 000 000 $ZAZZY</strong></div>
@@ -437,7 +457,42 @@
     </section>
 
     <script>
-        // Бургер-меню (мобильное)
+        // Инициализация частиц
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 90, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#27F5F2" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.7, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1 } },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": false },
+                "move": {
+                    "enable": true,
+                    "speed": 2.5,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": { "enable": true, "rotateX": 600, "rotateY": 1200 }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "repulse": { "distance": 100, "duration": 0.4 },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Остальной JS без изменений
         const burger = document.getElementById('burger');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -446,7 +501,6 @@
             mobileMenu.classList.toggle('active');
         });
 
-        // Закрытие мобильного меню по клику на ссылку
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 burger.classList.remove('active');
@@ -454,20 +508,16 @@
             });
         });
 
-        // Плавный скролл
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
                 const href = a.getAttribute('href');
                 if (href === '#' || href === '') return;
                 e.preventDefault();
                 const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({behavior: 'smooth'});
-                }
+                if (target) target.scrollIntoView({behavior: 'smooth'});
             });
         });
 
-        // Анимация блоков при скролле
         document.querySelectorAll('.info-block').forEach(block => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
