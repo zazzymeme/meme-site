@@ -10,7 +10,12 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;overflow-x:hidden;font-family:Inter,sans-serif}
+body{
+    background:#000;
+    color:#fff;
+    overflow-x:hidden;
+    font-family:Inter,sans-serif;
+}
 
 /* BG */
 #bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
@@ -18,124 +23,219 @@ body{background:#000;color:#fff;overflow-x:hidden;font-family:Inter,sans-serif}
 
 /* MENU */
 .menu{
-position:fixed;top:25px;left:50%;transform:translateX(-50%);
-display:flex;gap:30px;z-index:1000
+    position:fixed;
+    top:25px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:30px;
+    z-index:1000;
 }
 .menu a{
-font-size:.85rem;color:#e0e0e0;text-decoration:none;
-text-transform:uppercase;letter-spacing:2px;
-padding:8px 12px;transition:.4s
+    font-size:.85rem;
+    color:#e0e0e0;
+    text-decoration:none;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    padding:8px 12px;
+    transition:.4s;
 }
 .menu a:hover{color:#27F5F2;text-shadow:0 0 20px #27F5F2}
 
 /* BURGER */
 .burger{
-display:none;position:fixed;top:25px;right:25px;
-width:36px;height:26px;flex-direction:column;
-justify-content:space-between;cursor:pointer;z-index:1100
+    display:none;
+    position:fixed;
+    top:25px;
+    right:25px;
+    width:36px;
+    height:26px;
+    flex-direction:column;
+    justify-content:space-between;
+    cursor:pointer;
+    z-index:1100;
 }
 .burger span{
-height:4px;background:#27F5F2;border-radius:4px;
-box-shadow:0 0 10px #27F5F2;transition:.4s
+    height:4px;
+    background:#27F5F2;
+    border-radius:4px;
+    box-shadow:0 0 10px #27F5F2;
+    transition:.4s;
 }
 
 @media(max-width:768px){
-.menu{
-flex-direction:column;
-inset:0;
-background:rgba(0,0,0,.95);
-justify-content:center;
-opacity:0;pointer-events:none;
-transition:.5s
-}
-.menu.open{opacity:1;pointer-events:auto}
-.burger{display:flex}
+    .menu{
+        flex-direction:column;
+        inset:0;
+        background:rgba(0,0,0,.96);
+        justify-content:center;
+        opacity:0;
+        pointer-events:none;
+        transition:.4s;
+    }
+    .menu.open{
+        opacity:1;
+        pointer-events:auto;
+    }
+    .burger{display:flex}
 }
 
 /* SECTIONS */
-.section{padding:140px 20px 80px;text-align:center;position:relative;z-index:10}
+.section{
+    padding:140px 20px 80px;
+    text-align:center;
+    position:relative;
+    z-index:10;
+}
 
 .logo{
-width:280px;height:280px;border-radius:50%;
-border:1.5px solid #27F5F2;
-box-shadow:0 0 30px rgba(39,245,242,.8);
-animation:pulse 4s infinite
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    border:1.5px solid #27F5F2;
+    box-shadow:0 0 30px rgba(39,245,242,.8);
+    animation:pulse 4s infinite;
 }
 @keyframes pulse{
-0%,100%{box-shadow:0 0 30px rgba(39,245,242,.8)}
-50%{box-shadow:0 0 70px #27F5F2}
+    0%,100%{box-shadow:0 0 30px rgba(39,245,242,.8)}
+    50%{box-shadow:0 0 70px #27F5F2}
 }
 
 h1{
-font-family:Orbitron,sans-serif;
-font-size:6.5rem;color:#27F5F2;
-text-shadow:0 0 60px rgba(39,245,242,.8);
-margin:30px 0
+    font-family:Orbitron,sans-serif;
+    font-size:6.5rem;
+    color:#27F5F2;
+    text-shadow:0 0 60px rgba(39,245,242,.8);
+    margin:30px 0;
 }
 
 .manifesto{
-max-width:1000px;margin:50px auto;
-font-size:1.4rem;line-height:1.7;
-text-shadow:0 0 15px rgba(255,255,255,.4)
+    max-width:100%;
+    margin:50px auto;
+    font-size:1.4rem;
+    line-height:1.7;
+    text-shadow:0 0 15px rgba(255,255,255,.4);
+    padding:0 10px;
 }
 .manifesto strong{color:#27F5F2;font-size:1.7rem}
 
 .ca{
-background:rgba(39,245,242,.15);
-padding:16px 30px;border-radius:18px;
-border:2px solid #27F5F2;
-color:#27F5F2;font-family:monospace;
-margin:60px auto;max-width:90%;
-box-shadow:0 0 60px rgba(39,245,242,.6)
+    background:rgba(39,245,242,.15);
+    padding:16px 30px;
+    border-radius:18px;
+    border:2px solid #27F5F2;
+    color:#27F5F2;
+    font-family:monospace;
+    font-size:1.1rem;
+    margin:60px auto;
+    max-width:95%;
+    box-shadow:0 0 60px rgba(39,245,242,.6);
+    word-break:break-all;
 }
 
 /* INFO BLOCKS */
 .info-block{
-margin:100px auto;max-width:95%;
-padding:60px 30px;
-background:rgba(255,255,255,.06);
-backdrop-filter:blur(20px);
-border-radius:30px;
-opacity:0;transform:translateY(60px);
-transition:1s
+    margin:100px auto;
+    max-width:95%;
+    padding:60px 30px;
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(20px);
+    border-radius:30px;
+    box-shadow:0 20px 60px rgba(0,0,0,.6);
+    opacity:0;
+    transform:translateY(60px);
+    transition:1s;
 }
-.info-block.animated{opacity:1;transform:none}
+
+/* 🔑 КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ */
+.info-block,
+.info-block *{
+    max-width:100%;
+    word-break:break-word;
+    overflow-wrap:anywhere;
+    white-space:normal;
+}
+
+.info-block.animated{
+    opacity:1;
+    transform:none;
+}
 
 .block-title{
-font-family:Orbitron,sans-serif;
-font-size:3.5rem;
-color:#27F5F2;
-margin-bottom:40px
+    font-family:Orbitron,sans-serif;
+    font-size:3.5rem;
+    color:#27F5F2;
+    text-shadow:0 0 50px #27F5F2;
+    margin-bottom:40px;
 }
 
-.supply{font-size:1.8rem}
-.supply strong{color:#27F5F2;font-size:2rem}
+.supply{
+    font-size:1.8rem;
+    line-height:1.6;
+    margin-bottom:30px;
+}
+.supply strong{
+    display:block;
+    color:#27F5F2;
+    font-size:2rem;
+    margin-top:10px;
+}
+
+.tax-info-line{
+    font-size:1.3rem;
+    line-height:1.8;
+    margin:10px auto;
+}
+.tax-info-line .highlight-value{
+    color:#27F5F2;
+    font-weight:900;
+}
 
 .tax-table{
-max-width:95%;margin:40px auto;
-background:rgba(39,245,242,.08);
-border:1px solid rgba(39,245,242,.4);
-border-radius:20px;overflow:hidden
+    max-width:100%;
+    margin:30px auto;
+    background:rgba(39,245,242,.08);
+    border:1px solid rgba(39,245,242,.4);
+    border-radius:20px;
+    overflow:hidden;
 }
-.tax-header,.tax-row{
-display:grid;grid-template-columns:1fr 2fr 1fr;
-padding:12px 15px
+.tax-header,
+.tax-row{
+    display:grid;
+    grid-template-columns:1fr 2fr 1fr;
+    padding:12px 15px;
 }
-.tax-header{background:rgba(39,245,242,.15);color:#aaa}
-.tax-row{border-top:1px solid rgba(39,245,242,.2)}
-.tax-row span:last-child{
-color:#27F5F2;font-weight:900
+.tax-header{
+    background:rgba(39,245,242,.15);
+    color:#aaa;
+    font-weight:700;
+}
+.tax-row{
+    border-top:1px solid rgba(39,245,242,.2);
+}
+.tax-row .percent{
+    color:#27F5F2;
+    font-weight:900;
 }
 
 .about-text{
-max-width:900px;margin:auto;
-font-size:1.3rem;line-height:1.6
+    font-size:1.3rem;
+    line-height:1.7;
+    padding:0 10px;
 }
-.about-text strong{color:#27F5F2}
+.about-text strong{
+    color:#27F5F2;
+    text-shadow:0 0 30px #27F5F2;
+}
 
 /* MOBILE */
 @media(max-width:480px){
-h1{font-size:5rem}
+    h1{font-size:5rem}
+    .block-title{font-size:3rem}
+    .supply{font-size:1.6rem}
+    .supply strong{font-size:1.8rem}
+    .tax-info-line{font-size:1.2rem}
+    .about-text{font-size:1.2rem}
 }
 </style>
 </head>
@@ -143,77 +243,102 @@ h1{font-size:5rem}
 <body>
 
 <video id="bg-video" autoplay muted loop playsinline>
-<source src="https://i.imgur.com/Wt2peow.mp4" type="video/mp4">
+    <source src="https://i.imgur.com/Wt2peow.mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
 
 <div class="burger" id="burger">
-<span></span><span></span><span></span>
+    <span></span><span></span><span></span>
 </div>
 
 <div class="menu" id="menu">
-<a href="#about">About</a>
-<a href="#howtobuy">Buy Zazzy</a>
-<a href="#tokenomics">Tokenomics</a>
-<a href="#contract">Contract</a>
-<a href="#">Telegram</a>
-<a href="#">X</a>
+    <a href="#about">About</a>
+    <a href="#howtobuy">Buy Zazzy</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#contract">Contract</a>
+    <a href="#">Telegram</a>
+    <a href="#">X</a>
 </div>
 
 <section id="howtobuy" class="section">
-<img src="logo.png" class="logo">
-<h1>$ZAZZY</h1>
+    <img src="logo.png" alt="ZAZZY" class="logo">
+    <h1>$ZAZZY</h1>
 
-<div class="manifesto">
-Whales farmed retail for years.<br>
-<strong>Enough.</strong><br>
-Max <strong>0.1%</strong> per wallet. Forever.<br>
-The fairest meme coin ever created.
-</div>
+    <div class="manifesto">
+        Whales and funds farmed retail for years.<br>
+        <strong>Enough.</strong><br>
+        Max <strong>0.1%</strong> per wallet. Forever.<br>
+        The fairest meme coin that ever lived.
+    </div>
 
-<p class="ca" id="contract">0xВСТАВЬ_СВОЙ_АДРЕС_СЮДА</p>
+    <p class="ca" id="contract">0xВСТАВЬ_СВОЙ_АДРЕС_СЮДА</p>
 </section>
 
 <section id="tokenomics" class="info-block section">
-<div class="block-title">TOKENOMICS</div>
-<div class="supply">
-Total Supply:
-<strong>1 000 000 000 000 000 $ZAZZY</strong>
-</div>
+    <div class="block-title">TOKENOMICS</div>
 
-<div class="tax-table">
-<div class="tax-header"><span>Stage</span><span>Market Cap</span><span>Buy Tax</span></div>
-<div class="tax-row"><span>Start</span><span>&lt; $5M</span><span>10%</span></div>
-<div class="tax-row"><span>Final</span><span>≥ $100M</span><span>0%</span></div>
-</div>
+    <div class="supply">
+        Total Supply:
+        <strong>1 000 000 000 000 000</strong>
+        <strong>$ZAZZY</strong>
+    </div>
+
+    <div class="tax-info-line">
+        Max Wallet: <span class="highlight-value">0.1%</span>
+    </div>
+
+    <div class="tax-table">
+        <div class="tax-header">
+            <span>Stage</span>
+            <span>Market Cap</span>
+            <span>Buy Tax</span>
+        </div>
+        <div class="tax-row">
+            <span>Start</span>
+            <span>&lt; $5M</span>
+            <span class="percent">10%</span>
+        </div>
+        <div class="tax-row">
+            <span>Final</span>
+            <span>≥ $100M</span>
+            <span class="percent">0%</span>
+        </div>
+    </div>
 </section>
 
 <section id="about" class="info-block section">
-<div class="block-title">ABOUT</div>
-<div class="about-text">
-<strong>No whales. No rugs.</strong><br><br>
-The code is the law.<br>
-Every holder is equal.
-</div>
+    <div class="block-title">ABOUT</div>
+    <div class="about-text">
+        <strong>No whales. No rugs.</strong><br><br>
+        The code is the law.<br>
+        Every holder is equal.<br>
+        No exceptions. Forever.
+    </div>
 </section>
 
 <script>
 const burger=document.getElementById('burger');
 const menu=document.getElementById('menu');
-burger.onclick=()=>menu.classList.toggle('open');
+
+burger.onclick=()=>{
+    menu.classList.toggle('open');
+};
 
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
-a.onclick=e=>{
-e.preventDefault();
-menu.classList.remove('open');
-document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
-};
+    a.onclick=e=>{
+        e.preventDefault();
+        menu.classList.remove('open');
+        document.querySelector(a.getAttribute('href'))
+            .scrollIntoView({behavior:'smooth'});
+    };
 });
 
-document.querySelectorAll('.info-block').forEach(b=>{
-new IntersectionObserver(e=>{
-if(e[0].isIntersecting)b.classList.add('animated')
-},{threshold:.3}).observe(b)
+document.querySelectorAll('.info-block').forEach(block=>{
+    new IntersectionObserver(entries=>{
+        if(entries[0].isIntersecting){
+            block.classList.add('animated');
+        }
+    },{threshold:.3}).observe(block);
 });
 </script>
 
