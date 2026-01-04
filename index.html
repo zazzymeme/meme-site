@@ -14,16 +14,37 @@
         #bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;pointer-events:none}
         .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.68);z-index:2}
 
-        /* Оригинальное десктопное меню (видно всегда на десктопе) */
+        /* Фиксированное десктопное меню в один ряд */
         .menu {
-            position:absolute;top:25px;left:50%;transform:translateX(-50%);
-            display:flex;gap:30px;z-index:999;flex-wrap:wrap;justify-content:center;align-items:center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
         }
         .menu a{
-            font-weight:500;font-size:0.85rem;color:#e0e0e0;text-decoration:none;
-            text-transform:uppercase;letter-spacing:2px;transition:all .5s;padding:8px 12px;
+            font-weight:500;
+            font-size:0.85rem;
+            color:#e0e0e0;
+            text-decoration:none;
+            text-transform:uppercase;
+            letter-spacing:2px;
+            transition:all .5s;
+            padding:8px 12px;
+            white-space: nowrap;
         }
-        .menu a:hover{color:#27F5F2;text-shadow:0 0 20px #27F5F2;transform:translateY(-3px)}
+        .menu a:hover{
+            color:#27F5F2;
+            text-shadow:0 0 20px #27F5F2;
+            transform:translateY(-3px);
+        }
 
         /* Бургер-кнопка (только на мобильных) */
         .burger {
@@ -95,7 +116,7 @@
             transform:scale(1.1);
         }
 
-        .section{padding:140px 20px 80px;text-align:center;position:relative;z-index:10}
+        .section{padding:160px 20px 80px;text-align:center;position:relative;z-index:10}
 
         .logo{
             width:280px;height:280px;border-radius:50%;border:1.5px solid #27F5F2;
@@ -208,8 +229,9 @@
                 display: flex;
             }
             .menu {
-                display: none; /* Скрываем обычное меню на мобильных */
+                display: none; /* Скрываем десктопное меню на мобильных */
             }
+            .section{padding:140px 20px 80px;}
         }
 
         @media(max-width: 480px) {
@@ -222,8 +244,6 @@
             .burger span {
                 width: 30px;
             }
-            .menu{gap:20px;top:15px}
-            .menu a{font-size:0.8rem;padding:6px 10px}
             .logo{width:220px;height:220px}
             h1{font-size:5rem}
             .manifesto{font-size:1.3rem}
@@ -251,7 +271,7 @@
     </video>
     <div class="overlay"></div>
 
-    <!-- Обычное меню (десктоп) -->
+    <!-- Фиксированное десктопное меню (в один ряд) -->
     <div class="menu">
         <a href="#about">About</a>
         <a href="#howtobuy">Buy Zazzy</a>
@@ -366,7 +386,7 @@
     </section>
 
     <script>
-        // Бургер-меню (только мобильное)
+        // Бургер-меню (мобильное)
         const burger = document.getElementById('burger');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -383,7 +403,7 @@
             });
         });
 
-        // Плавный скролл для всех ссылок
+        // Плавный скролл
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
                 const href = a.getAttribute('href');
