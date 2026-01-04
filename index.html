@@ -14,7 +14,18 @@
         #bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;pointer-events:none}
         .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.68);z-index:2}
 
-        /* Бургер-кнопка */
+        /* Оригинальное десктопное меню (видно всегда на десктопе) */
+        .menu {
+            position:absolute;top:25px;left:50%;transform:translateX(-50%);
+            display:flex;gap:30px;z-index:999;flex-wrap:wrap;justify-content:center;align-items:center;
+        }
+        .menu a{
+            font-weight:500;font-size:0.85rem;color:#e0e0e0;text-decoration:none;
+            text-transform:uppercase;letter-spacing:2px;transition:all .5s;padding:8px 12px;
+        }
+        .menu a:hover{color:#27F5F2;text-shadow:0 0 20px #27F5F2;transform:translateY(-3px)}
+
+        /* Бургер-кнопка (только на мобильных) */
         .burger {
             position: fixed;
             top: 25px;
@@ -48,8 +59,8 @@
             transform: rotate(-45deg) translate(8px, -8px);
         }
 
-        /* Меню */
-        .menu {
+        /* Полноэкранное мобильное меню */
+        .mobile-menu {
             position: fixed;
             top: 0;
             left: 0;
@@ -65,10 +76,10 @@
             transform: translateX(100%);
             transition: transform 0.4s ease;
         }
-        .menu.active {
+        .mobile-menu.active {
             transform: translateX(0);
         }
-        .menu a {
+        .mobile-menu a {
             font-weight:500;
             font-size:1.8rem;
             color:#e0e0e0;
@@ -78,7 +89,7 @@
             transition:all .5s;
             padding:10px 20px;
         }
-        .menu a:hover {
+        .mobile-menu a:hover {
             color:#27F5F2;
             text-shadow:0 0 20px #27F5F2;
             transform:scale(1.1);
@@ -191,16 +202,13 @@
 
         .animated *{opacity:1 !important;transform:none !important;}
 
-        /* Мобильные стили */
+        /* Адаптация под мобильные */
         @media(max-width: 768px) {
             .burger {
                 display: flex;
             }
             .menu {
-                gap: 30px;
-            }
-            .menu a {
-                font-size: 1.5rem;
+                display: none; /* Скрываем обычное меню на мобильных */
             }
         }
 
@@ -214,6 +222,8 @@
             .burger span {
                 width: 30px;
             }
+            .menu{gap:20px;top:15px}
+            .menu a{font-size:0.8rem;padding:6px 10px}
             .logo{width:220px;height:220px}
             h1{font-size:5rem}
             .manifesto{font-size:1.3rem}
@@ -241,15 +251,25 @@
     </video>
     <div class="overlay"></div>
 
-    <!-- Бургер-кнопка -->
+    <!-- Обычное меню (десктоп) -->
+    <div class="menu">
+        <a href="#about">About</a>
+        <a href="#howtobuy">Buy Zazzy</a>
+        <a href="#tokenomics-block">Tokenomics</a>
+        <a href="#contract">Contract</a>
+        <a href="#" class="btn">Telegram</a>
+        <a href="#" class="btn">X</a>
+    </div>
+
+    <!-- Бургер (мобильные) -->
     <div class="burger" id="burger">
         <span></span>
         <span></span>
         <span></span>
     </div>
 
-    <!-- Меню -->
-    <div class="menu" id="menu">
+    <!-- Полноэкранное мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
         <a href="#about">About</a>
         <a href="#howtobuy">Buy Zazzy</a>
         <a href="#tokenomics-block">Tokenomics</a>
@@ -346,28 +366,30 @@
     </section>
 
     <script>
-        // Бургер-меню
+        // Бургер-меню (только мобильное)
         const burger = document.getElementById('burger');
-        const menu = document.getElementById('menu');
+        const mobileMenu = document.getElementById('mobileMenu');
 
         burger.addEventListener('click', () => {
             burger.classList.toggle('active');
-            menu.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
         });
 
-        // Закрытие меню при клике на ссылку
-        document.querySelectorAll('.menu a').forEach(link => {
+        // Закрытие мобильного меню по клику на ссылку
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 burger.classList.remove('active');
-                menu.classList.remove('active');
+                mobileMenu.classList.remove('active');
             });
         });
 
-        // Плавный скролл
+        // Плавный скролл для всех ссылок
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
+                const href = a.getAttribute('href');
+                if (href === '#' || href === '') return;
                 e.preventDefault();
-                const target = document.querySelector(a.getAttribute('href'));
+                const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({behavior: 'smooth'});
                 }
@@ -384,7 +406,5 @@
             observer.observe(block);
         });
     </script>
-</body>
-</html>
 </body>
 </html>
