@@ -14,7 +14,7 @@
         #bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;pointer-events:none}
         .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.68);z-index:2}
 
-        /* Десктопное меню — НЕ фиксированное, уходит при скролле */
+        /* Десктопное меню с анимацией появления */
         .menu {
             position: absolute;
             top: 25px;
@@ -25,8 +25,10 @@
             justify-content: center;
             align-items: center;
             z-index: 999;
-            flex-wrap: nowrap; /* Гарантируем один ряд */
+            flex-wrap: nowrap;
             white-space: nowrap;
+            opacity: 0;
+            animation: fadeInDown 1.2s ease-out 0.5s forwards;
         }
         .menu a{
             font-weight:500;
@@ -37,11 +39,40 @@
             letter-spacing:2px;
             transition:all .5s;
             padding:8px 12px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: menuItemFade 0.8s ease-out forwards;
         }
+        /* Задержка для каждого пункта меню */
+        .menu a:nth-child(1) { animation-delay: 0.7s; }
+        .menu a:nth-child(2) { animation-delay: 0.8s; }
+        .menu a:nth-child(3) { animation-delay: 0.9s; }
+        .menu a:nth-child(4) { animation-delay: 1.0s; }
+        .menu a:nth-child(5) { animation-delay: 1.1s; }
+        .menu a:nth-child(6) { animation-delay: 1.2s; }
+
         .menu a:hover{
             color:#27F5F2;
             text-shadow:0 0 20px #27F5F2;
             transform:translateY(-3px);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @keyframes menuItemFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Бургер-кнопка (только на мобильных) */
@@ -59,6 +90,8 @@
             align-items: center;
             gap: 6px;
             transition: transform 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.3s forwards;
         }
         .burger span {
             width: 35px;
@@ -78,7 +111,12 @@
             transform: rotate(-45deg) translate(8px, -8px);
         }
 
-        /* Полноэкранное мобильное меню */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Полноэкранное мобильное меню с анимацией */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -107,7 +145,21 @@
             letter-spacing:2px;
             transition:all .5s;
             padding:10px 20px;
+            opacity: 0;
+            transform: translateY(50px);
         }
+        .mobile-menu.active a {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease-out;
+        }
+        .mobile-menu.active a:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu.active a:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-menu.active a:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-menu.active a:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-menu.active a:nth-child(5) { transition-delay: 0.5s; }
+        .mobile-menu.active a:nth-child(6) { transition-delay: 0.6s; }
+
         .mobile-menu a:hover {
             color:#27F5F2;
             text-shadow:0 0 20px #27F5F2;
@@ -116,6 +168,7 @@
 
         .section{padding:140px 20px 80px;text-align:center;position:relative;z-index:10}
 
+        /* Остальные стили без изменений */
         .logo{
             width:280px;height:280px;border-radius:50%;border:1.5px solid #27F5F2;
             box-shadow:0 0 30px rgba(39,245,242,.8);animation:pulse 4s infinite;
@@ -227,7 +280,7 @@
                 display: flex;
             }
             .menu {
-                display: none; /* Скрываем десктопное меню на мобильных */
+                display: none;
             }
         }
 
@@ -268,7 +321,7 @@
     </video>
     <div class="overlay"></div>
 
-    <!-- Десктопное меню (не фиксированное, уходит при скролле) -->
+    <!-- Десктопное меню с анимацией -->
     <div class="menu">
         <a href="#about">About</a>
         <a href="#howtobuy">Buy Zazzy</a>
@@ -285,7 +338,7 @@
         <span></span>
     </div>
 
-    <!-- Полноэкранное мобильное меню -->
+    <!-- Полноэкранное мобильное меню с анимацией пунктов -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="#about">About</a>
         <a href="#howtobuy">Buy Zazzy</a>
@@ -295,6 +348,7 @@
         <a href="#" class="btn">X</a>
     </div>
 
+    <!-- Остальной контент без изменений -->
     <section id="howtobuy" class="section">
         <img src="logo.png" alt="ZAZZY" class="logo">
         <h1>$ZAZZY</h1>
