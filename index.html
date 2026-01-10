@@ -5,7 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$ZAZZY — The Fairest Meme Coin</title>
 
-    <link rel="icon" href="favicon.png" sizes="512x512">
+    <!-- ========== FAVICONS & PWA ========== -->
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+
+    <link rel="icon" href="/favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="16x16"  href="/favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32"  href="/favicon_io/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon_io/android-chrome-512x512.png">
+
+    <meta name="theme-color" content="#27F5F2">
+    <meta name="msapplication-TileColor" content="#000000">
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Orbitron:wght@900&display=swap" rel="stylesheet">
     
     <!-- Particles.js -->
@@ -61,24 +74,15 @@
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
+            from { opacity: 0; transform: translateX(-50%) translateY(-40px); }
+            to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
         @keyframes menuItemFade {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Burger — теперь absolute на мобильных, чтобы уходил при скролле */
+        /* Burger */
         .burger-container {
             position: absolute;
             top: 0;
@@ -121,7 +125,7 @@
 
         @keyframes fadeIn {
             from { opacity: 0; }
-            to { opacity: 1; }
+            to   { opacity: 1; }
         }
 
         /* Mobile menu */
@@ -236,10 +240,9 @@
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Остальные стили без изменений */
         .info-block{
             margin:100px auto;max-width:95%;padding:60px 30px;
             background:rgba(255,255,255,.06);backdrop-filter:blur(20px);
@@ -316,23 +319,14 @@
 
         .animated *{opacity:1 !important;transform:none !important;}
 
-        /* Мобильные стили */
         @media(max-width: 768px) {
-            .burger { 
-                display: flex; 
-                position: absolute; /* Теперь absolute, чтобы уходил при скролле */
-            }
+            .burger { display: flex; }
             .menu { display: none; }
             #particles-js { width: 280px; height: 280px; }
         }
 
         @media(max-width: 480px) {
-            .burger { 
-                top: 15px; 
-                right: 15px; 
-                width: 45px; 
-                height: 45px; 
-            }
+            .burger { top: 15px; right: 15px; width: 45px; height: 45px; }
             .burger span { width: 30px; }
             .logo{width:220px;height:220px}
             #particles-js { width: 240px; height: 240px; }
@@ -372,7 +366,7 @@
         <a href="#" class="btn">X</a>
     </div>
 
-    <!-- Burger container — absolute, чтобы бургер уходил при скролле на мобильных -->
+    <!-- Burger -->
     <div class="burger-container">
         <div class="burger" id="burger">
             <span></span>
@@ -391,7 +385,6 @@
         <a href="#" class="btn">X</a>
     </div>
 
-    <!-- Main section -->
     <section id="howtobuy" class="section">
         <div class="logo-container">
             <img src="logo.png" alt="ZAZZY" class="logo">
@@ -426,7 +419,6 @@
         </div>
     </section>
 
-    <!-- Остальные секции без изменений -->
     <section id="tokenomics-block" class="info-block section">
         <div class="block-title">TOKENOMICS</div>
         <div class="supply">Total Supply: <strong>1 000 000 000 000 000 $ZAZZY</strong></div>
@@ -504,7 +496,7 @@
     </section>
 
     <script>
-        // Частицы
+        // Particles
         particlesJS("particles-js", {
             "particles": {
                 "number": { "value": 180, "density": { "enable": true, "value_area": 800 } },
@@ -535,7 +527,7 @@
             "retina_detect": true
         });
 
-        // Бургер и мобильное меню
+        // Burger & Mobile Menu
         const burger = document.getElementById('burger');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -551,7 +543,7 @@
             });
         });
 
-        // Плавный скролл
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
                 const href = a.getAttribute('href');
@@ -562,7 +554,7 @@
             });
         });
 
-        // Анимация блоков при скролле
+        // Animate info blocks on scroll
         document.querySelectorAll('.info-block').forEach(block => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
